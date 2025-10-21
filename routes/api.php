@@ -18,5 +18,7 @@ Route::get('/albums', [AlbumsApiController::class, 'index']);
 Route::post('/albums', [AlbumsApiController::class, 'store'])->middleware('auth:sanctum');
 
 Route::get('/members', [MembersApiController::class, 'index']);
+Route::post('/members', [MembersApiController::class, 'store'])->middleware('auth:sanctum');
 
 Route::get('/songs', [SongsApiController::class, 'index']);
+Route::post('/songs', [SongsApiController::class, 'store'])->middleware('auth:sanctum');

@@ -14,4 +14,17 @@ class MembersApiController extends Controller
             'members' => $members,
         ]);
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|min:2',
+            'instruement' => 'required|string|min:2',
+            'year' => 'required|numeric',
+            'artist_id' => 'required|numeric',
+            'image' => 'required|string|min:2',
+        ]);
+        $member = Member::create($request->all());
+        return response()->json(['member' => $member]);
+    }
 }

@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Song extends Model
 {
+
+    protected $fillable = [
+        'name',
+        'lyrics',
+        'songwriter',
+        'album_id'
+    ];
+
     public $timestamps = false;
 
     function album()

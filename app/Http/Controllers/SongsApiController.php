@@ -14,4 +14,16 @@ class SongsApiController extends Controller
             'songs' => $songs,
         ]);
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|min:2',
+            'lyrics' => 'required|string|min:2',
+            'songwriter' => 'required|string|min:2',
+            'album_id' => 'required|numeric',
+        ]);
+        $song = Song::create($request->all());
+        return response()->json(['song' => $song]);
+    }
 }
