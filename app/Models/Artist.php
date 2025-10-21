@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Artist extends Model
 {
+
+    protected $fillable = [
+        'name',
+        'nationality',
+        'description',
+        'image',
+        'is_band'
+    ];
     public $timestamps = false;
 
     function member()

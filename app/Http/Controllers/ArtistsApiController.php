@@ -17,8 +17,14 @@ class ArtistsApiController extends Controller
 
     public function store(Request $request)
     {
-        request()
-
+        $request->validate([
+            'name' => 'required|string|min:2',
+            'nationality' => 'required|string|min:2',
+            'image' => 'nullable|string',
+            'description' => 'required|string|min:2',
+            'is_band' => 'required|string|min:2',
+        ]);
+        $artist = Artist::create($request->all());
         return response()->json(['artist' => $artist,]);
     }
 }
