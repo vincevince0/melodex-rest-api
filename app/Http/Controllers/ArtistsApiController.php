@@ -25,6 +25,6 @@ class ArtistsApiController extends Controller
             'is_band' => 'required|string|min:2',
         ]);
         $artist = Artist::create($request->all());
-        return response()->json(['artist' => $artist,]);
+        return response()->json(['artist' => $artist]);
     }
 }
