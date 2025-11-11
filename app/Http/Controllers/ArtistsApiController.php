@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Artist;
 use Illuminate\Http\Request;
+use App\Http\Requests\ArtistRequest;
 
 class ArtistsApiController extends Controller
 {
@@ -15,16 +16,16 @@ class ArtistsApiController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(ArtistRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|min:2',
-            'nationality' => 'required|string|min:2',
-            'image' => 'nullable|string',
-            'description' => 'required|string|min:2',
-            'is_band' => 'required|string|min:2',
-        ]);
         $artist = Artist::create($request->all());
+        return response()->json(['artist' => $artist]);
+    }
+
+    public function update(ArtistRequest $request, $id)
+    {
+        $artist = Artist::findOrFail($id);
+        $artist->update($request->all());
         return response()->json(['artist' => $artist]);
     }
 }

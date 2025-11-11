@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Album;
 use Illuminate\Http\Request;
+use App\Http\Requests\AlbumRequest;
 
 class AlbumsApiController extends Controller
 {
@@ -15,16 +16,17 @@ class AlbumsApiController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(AlbumRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|min:2',
-            'cover' => 'required|string|min:2',
-            'year' => 'required|numeric',
-            'genre' => 'required|string|min:2',
-            'artist_id' => 'required|numeric',
-        ]);
         $album = Album::create($request->all());
         return response()->json(['album' => $album]);
     }
+
+    public function update(AlbumRequest $request, $id)
+    {
+        $album = Album::findOrFail($id);
+        $album->update($request->all());
+        return response()->json(['album' => $album]);
+    }
+
 }

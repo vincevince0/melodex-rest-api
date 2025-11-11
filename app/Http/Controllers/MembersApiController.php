@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use Illuminate\Http\Request;
+use App\Http\Requests\MemberRequest;
 
 class MembersApiController extends Controller
 {
@@ -15,16 +16,16 @@ class MembersApiController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(MemberRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|min:2',
-            'instruement' => 'required|string|min:2',
-            'year' => 'required|numeric',
-            'artist_id' => 'required|numeric',
-            'image' => 'required|string|min:2',
-        ]);
         $member = Member::create($request->all());
+        return response()->json(['member' => $member]);
+    }
+
+    public function update(MemberRequest $request, $id)
+    {
+        $member = Member::findOrFail($id);
+        $member->update($request->all());
         return response()->json(['member' => $member]);
     }
 }
