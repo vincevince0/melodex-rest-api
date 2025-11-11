@@ -17,9 +17,12 @@ return new class extends Migration
             $table->string('lyrics')->nullable();
             $table->string('songwriter');
             $table->unsignedBigInteger('album_id');
-            $table->foreign('album_id')->references('id')->on('albums');
+            $table->foreign('album_id')->references('id')->on('albums')->onDelete('cascade');
+
+
         });
     }
+    
 
     /**
      * Reverse the migrations.

@@ -34,4 +34,12 @@ class SongsApiController extends Controller
         $song->update($request->all());
         return response()->json(['song' => $song]);
     }
+
+    public function destroy($id)
+    {
+        $song = Song::findOrFail($id);
+        $song->delete();
+        
+        return response()->json(['message' => 'Song deleted successfully', 'id' => $id]);
+    }
 }

@@ -28,4 +28,12 @@ class ArtistsApiController extends Controller
         $artist->update($request->all());
         return response()->json(['artist' => $artist]);
     }
+
+    public function destroy($id)
+    {
+        $artist = Artist::findOrFail($id);
+        $artist->delete();
+        
+        return response()->json(['message' => 'Artist deleted successfully', 'id' => $id]);
+    }
 }

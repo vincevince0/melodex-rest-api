@@ -28,4 +28,12 @@ class MembersApiController extends Controller
         $member->update($request->all());
         return response()->json(['member' => $member]);
     }
+
+    public function destroy($id)
+    {
+        $member = Member::findOrFail($id);
+        $member->delete();
+        
+        return response()->json(['message' => 'Member deleted successfully', 'id' => $id]);
+    }
 }
