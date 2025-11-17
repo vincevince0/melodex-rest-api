@@ -1,0 +1,8 @@
+{
+    "name": "Music Library API",
+    "version": "1.0.0",
+    "description": "API documentation for Albums, Artists, Members, and Songs",
+    "title": "Music Library API",
+    "url": "http://localhost:8000/api"
+  }
+  
