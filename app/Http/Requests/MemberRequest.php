@@ -25,7 +25,7 @@ class MemberRequest extends FormRequest
         {
             return [
                 'name' => 'nullable|string|min:2',
-                'instruement' => 'nullable|string|min:2',
+                'instrument' => 'nullable|string|min:2',
                 'year' => 'nullable|numeric',
                 'artist_id' => 'nullable|numeric',
                 'image' => 'nullable|string|min:2',
@@ -33,7 +33,7 @@ class MemberRequest extends FormRequest
         }
         return [
             'name' => 'required|string|min:2',
-            'instruement' => 'required|string|min:2',
+            'instrument' => 'required|string|min:2',
             'year' => 'required|numeric',
             'artist_id' => 'required|numeric',
             'image' => 'required|string|min:2',
