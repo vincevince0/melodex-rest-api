@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('cover')->nullable();
             $table->string('year');
             $table->string('genre');
-            $table->unsignedBigInteger('artist_id');
+            $table->unsignedBigInteger('artist_id')->nullable();
             $table->foreign('artist_id')->references('id')->on('artists')->onDelete('cascade');
 
           
