@@ -93,6 +93,9 @@ class AlbumsApiController extends Controller
         $album = Album::findOrFail($id);
         $album->delete();
         
-        return response()->json(['message' => 'Album deleted successfully', 'id' => $id]);
+        //return response()->json(['message' => 'Album deleted successfully', 'id' => $id]);
+        return response()->json(['message' => 'Deleted'], 410);
     }
 }
+
+

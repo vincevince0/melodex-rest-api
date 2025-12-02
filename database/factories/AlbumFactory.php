@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;// ne felejtse el importá
 class AlbumFactory extends Factory
 {
 
-   use HasFactory;
+    use HasFactory;
     protected $model = Album::class;
     
     /**
