@@ -28,13 +28,13 @@ class AlbumControllerTest extends TestCase
     
     public function test_index_filters_by_needle()
     {
-        Album::factory()->create(['name' => 'Yeat']);
-        Album::factory()->create(['name' => 'Sheriff']);
+        Album::factory()->create(['name' => '2093']);
+        Album::factory()->create(['name' => 'Up2Me']);
 
         $response = $this->getJson('/api/albums?needle=bar');
 
         $response->assertStatus(200)
-            ->assertJsonFragment(['name' => 'Yeat'])  // Yeat benne van a válaszban
+            ->assertJsonFragment(['name' => '2093'])  // 2093 benne van a válaszban
             ->assertJsonMissing(['name' => 'FrankSierra']);  // Franksierra nincs benne
     }
 

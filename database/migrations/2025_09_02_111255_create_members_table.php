@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('instrument');
             $table->string('year');
-            $table->unsignedBigInteger('artist_id');
+            $table->unsignedBigInteger('artist_id')->nullable();
             $table->foreign('artist_id')->references('id')->on('artists');
             $table->string('image')->nullable();
         });

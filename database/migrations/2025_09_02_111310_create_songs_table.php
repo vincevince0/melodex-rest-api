@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('lyrics')->nullable();
             $table->string('songwriter');
-            $table->unsignedBigInteger('album_id');
+            $table->unsignedBigInteger('album_id')->nullable();
             $table->foreign('album_id')->references('id')->on('albums')->onDelete('cascade');
 
 

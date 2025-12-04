@@ -87,6 +87,7 @@ class ArtistsApiController extends Controller
         $artist = Artist::findOrFail($id);
         $artist->delete();
         
-        return response()->json(['message' => 'Artist deleted successfully', 'id' => $id]);
+        //return response()->json(['message' => 'Artist deleted successfully', 'id' => $id]);
+        return response()->json(['message' => 'Deleted'], 410);
     }
 }

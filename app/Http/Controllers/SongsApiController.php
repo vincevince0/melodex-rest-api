@@ -94,6 +94,7 @@ class SongsApiController extends Controller
         $song = Song::findOrFail($id);
         $song->delete();
         
-        return response()->json(['message' => 'Song deleted successfully', 'id' => $id]);
+        //return response()->json(['message' => 'Song deleted successfully', 'id' => $id]);
+        return response()->json(['message' => 'Deleted'], 410);
     }
 }
