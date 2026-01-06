@@ -9,34 +9,35 @@ use Illuminate\Support\Facades\Hash;
 class UsersController extends Controller
 {
     public function login(Request $request)
-    {
-        $email = $request->input('email');
-        $password = $request->input('password');
+{
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
 
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+    $user = User::where('email', $request->input('email'))->first();
 
-        $user = User::where('email', $email)->first();
-
-        if (!$user || !Hash::check($password, $password ? $user->password : '')) {
-            return response()->json([
-                'message' => 'Invalid email or password',
-            ], 401); // Unauthorized
-        }
-
-        //revoke old tokens
-        $user->tokens()->delete();
-
-        $user->token = $user->createToken('access')->plainTextToken;
-        // ablities can be set https://laravel.com/docs/11.x/sanctum#token-abilities
-        // $token = $user->createToken('access', ['server:update']);
-
+    if (!$user || !Hash::check($request->input('password'), $user->password)) {
         return response()->json([
-            'user' => $user,
-        ]);
+            'message' => 'Invalid email or password',
+        ], 401);
     }
+
+    // Revoke old tokens
+    $user->tokens()->delete();
+
+    // Create new token
+    $token = $user->createToken('access')->plainTextToken;
+
+    return response()->json([
+        'user' => [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+        ],
+        'token' => $token,
+    ]);
+}
 
     public function index(Request $request)
     {
